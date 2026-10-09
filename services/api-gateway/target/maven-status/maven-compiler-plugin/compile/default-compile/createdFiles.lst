@@ -1,0 +1,4 @@
+com\fooddelivery\gateway\ApiGatewayApplication.class
+com\fooddelivery\gateway\config\RateLimitConfiguration.class
+com\fooddelivery\gateway\config\SecurityConfiguration.class
+com\fooddelivery\gateway\filter\CorrelationIdWebFilter.class

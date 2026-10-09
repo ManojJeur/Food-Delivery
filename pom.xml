@@ -14,5 +14,6 @@
 
     <modules>
         <module>services/service-registry</module>
+        <module>services/api-gateway</module>
     </modules>
 </project>
