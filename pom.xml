@@ -15,5 +15,6 @@
     <modules>
         <module>services/service-registry</module>
         <module>services/api-gateway</module>
+        <module>services/user-service</module>
     </modules>
 </project>
