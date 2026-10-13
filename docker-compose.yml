@@ -3,13 +3,16 @@ services:
     image: postgres:17.11-alpine3.24
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-user_db}
-      POSTGRES_USER: ${DB_USERNAME:?Set DB_USERNAME in the project .env file}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in the project .env file}
+      POSTGRES_DB: ${POSTGRES_ADMIN_DB:-postgres}
+      POSTGRES_USER: ${POSTGRES_ADMIN_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:?Set POSTGRES_ADMIN_PASSWORD in the project .env file}
+      DB_USERNAME: ${DB_USERNAME:?Set DB_USERNAME in the project .env file}
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in the project .env file}
     ports:
       - "127.0.0.1:${DB_PORT:-5432}:5432"
     volumes:
       - fooddelivery_postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
       interval: 5s

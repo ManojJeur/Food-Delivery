@@ -18,8 +18,11 @@ docker compose up -d postgres
 ```
 
 The container publishes PostgreSQL only on `127.0.0.1:5432`, persists its data
-in the `fooddelivery_postgres_data` volume, and creates `user_db` on first
-startup. Wait until `docker compose ps` reports the container as healthy.
+in the `fooddelivery_postgres_data` volume, and creates the service databases
+on first startup. `fooddelivery_app` is a separate non-superuser login that
+owns those databases; the PostgreSQL administrator credential is not used by
+the application. Wait until `docker compose ps` reports the container as
+healthy.
 
 When launching from PowerShell, load the local values from `.env` and start the
 service:
