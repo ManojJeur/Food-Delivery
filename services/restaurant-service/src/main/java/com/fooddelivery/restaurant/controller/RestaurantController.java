@@ -72,6 +72,14 @@ public class RestaurantController {
                 restaurantMapper.toResponse(restaurantService.getPublicRestaurant(restaurantId)));
     }
 
+    @GetMapping("/{restaurantId}/management-access")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAnyRole('RESTAURANT_OWNER', 'ADMIN')")
+    @SecurityRequirement(name = "bearerAuth")
+    public void verifyManagementAccess(@AuthenticationPrincipal Jwt jwt, @PathVariable UUID restaurantId) {
+        restaurantService.assertCanManage(userId(jwt), isAdministrator(jwt), restaurantId);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAnyRole('RESTAURANT_OWNER', 'ADMIN')")

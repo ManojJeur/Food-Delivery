@@ -33,6 +33,11 @@ GET /api/v1/restaurants?keyword=thai&page=0&size=20&sort=name,asc
 GET /api/v1/restaurants/{restaurantId}
 ```
 
+The Menu Service uses the protected
+`GET /api/v1/restaurants/{restaurantId}/management-access` endpoint to verify
+restaurant ownership before accepting menu mutations. It forwards the caller's
+JWT, so restaurant ownership remains authoritative in this service.
+
 Owner/admin operations:
 
 ```text

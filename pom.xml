@@ -17,5 +17,7 @@
         <module>services/api-gateway</module>
         <module>services/user-service</module>
         <module>services/restaurant-service</module>
+        <module>services/menu-service</module>
+        <module>services/order-service</module>
     </modules>
 </project>

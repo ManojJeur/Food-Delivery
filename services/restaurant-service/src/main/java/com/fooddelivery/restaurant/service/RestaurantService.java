@@ -42,6 +42,11 @@ public class RestaurantService {
     }
 
     @Transactional(readOnly = true)
+    public void assertCanManage(UUID currentUserId, boolean administrator, UUID restaurantId) {
+        findManaged(currentUserId, administrator, restaurantId);
+    }
+
+    @Transactional(readOnly = true)
     public Page<Restaurant> discover(String keyword, Pageable pageable) {
         String safeKeyword = keyword == null ? "" : keyword.trim();
         return restaurantRepository.findByNameContainingIgnoreCaseAndStatusNot(safeKeyword,
